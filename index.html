@@ -71,7 +71,7 @@ button:hover {
 
 <body>
 
-<audio autoplay loop>
+<audio id="bgMusic" loop>
     <source src="rangpakka.mpeg" type="audio/mpeg">
 </audio>
 
@@ -99,20 +99,28 @@ button:hover {
 
 <script>
 let musicStarted = false;
+const bgMusic = document.getElementById("bgMusic");
 
 function playMusic() {
-    if (!musicStarted) {
-        document.getElementById("bgMusic").play();
-        musicStarted = true;
+    if (!musicStarted && bgMusic) {
+        bgMusic.play()
+            .then(() => {
+                musicStarted = true;
+            })
+            .catch(error => {
+                console.log("Autoplay prevented:", error);
+            });
     }
 }
+
 function nextStep() {
-    
+    playMusic(); // MUST be called inside user click
     document.getElementById("step1").classList.add("hidden");
     document.getElementById("step2").classList.remove("hidden");
 }
 
 function showMessage() {
+    playMusic(); // extra safety
     document.getElementById("step2").classList.add("hidden");
     document.getElementById("final").classList.remove("hidden");
     createHearts();
@@ -131,4 +139,5 @@ function createHearts() {
 }
 </script>
 </body>
+
 </html>
