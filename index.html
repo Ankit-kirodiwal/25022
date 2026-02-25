@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>For Someone Special ❤️</title>
+
+<style>
+body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Segoe UI', sans-serif;
+    text-align: center;
+    background: linear-gradient(-45deg, #ff9a9e, #fad0c4, #fbc2eb, #a6c1ee);
+    background-size: 400% 400%;
+    animation: gradient 10s ease infinite;
+    overflow: hidden;
+}
+
+@keyframes gradient {
+    0% {background-position: 0% 50%;}
+    50% {background-position: 100% 50%;}
+    100% {background-position: 0% 50%;}
+}
+
+.container {
+    position: relative;
+    top: 30vh;
+}
+
+button {
+    padding: 12px 25px;
+    margin: 10px;
+    border: none;
+    border-radius: 25px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.yes { background: #ff4d6d; color: white; }
+.no { background: #444; color: white; }
+
+button:hover {
+    transform: scale(1.1);
+}
+
+.hidden {
+    display: none;
+}
+
+.heart {
+    position: absolute;
+    color: red;
+    animation: float 6s linear infinite;
+}
+
+@keyframes float {
+    0% {transform: translateY(100vh) scale(0);}
+    100% {transform: translateY(-10vh) scale(1);}
+}
+
+.message-box {
+    margin-top: 20px;
+    font-size: 22px;
+    color: #fff;
+    font-weight: bold;
+}
+</style>
+</head>
+
+<body>
+
+<audio autoplay loop>
+    <source src="rangpakka.mpeg" type="audio/mpeg">
+</audio>
+
+<div class="container" id="step1">
+    <h1>Hey… Are you feeling low today? 💔</h1>
+    <button class="yes" onclick="nextStep()">Yes</button>
+    <button class="no" onclick="nextStep()">No (Still Click 😉)</button>
+</div>
+
+<div class="container hidden " id="step2">
+    <h1>Wait… Are you ready for something special? ✨</h1>
+    <button class="yes " onclick="showMessage()"> I'm Ready</button>
+</div>
+
+<div class="container hidden" id="final">
+    <h1>You Are Stronger Than You Think ❤️</h1>
+    <div class="message-box">
+        Even on your worst days,  
+        you are still the most beautiful soul.  
+        This sadness? Temporary.  
+        Your value? Permanent.  
+        And I am always here for you. 🌸
+    </div>
+</div>
+
+<script>
+function nextStep() {
+    document.getElementById("step1").classList.add("hidden");
+    document.getElementById("step2").classList.remove("hidden");
+}
+
+function showMessage() {
+    document.getElementById("step2").classList.add("hidden");
+    document.getElementById("final").classList.remove("hidden");
+    createHearts();
+}
+
+function createHearts() {
+    for (let i = 0; i < 30; i++) {
+        let heart = document.createElement("div");
+        heart.innerHTML = "❤️";
+        heart.classList.add("heart");
+        heart.style.left = Math.random() * 100 + "vw";
+        heart.style.fontSize = Math.random() * 20 + 10 + "px";
+        heart.style.animationDuration = Math.random() * 3 + 3 + "s";
+        document.body.appendChild(heart);
+    }
+}
+</script>
+</body>
+</html>
