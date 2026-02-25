@@ -98,6 +98,14 @@ button:hover {
 </div>
 
 <script>
+let musicStarted = false;
+
+function playMusic() {
+    if (!musicStarted) {
+        document.getElementById("bgMusic").play();
+        musicStarted = true;
+    }
+}
 function nextStep() {
     document.getElementById("step1").classList.add("hidden");
     document.getElementById("step2").classList.remove("hidden");
@@ -122,4 +130,5 @@ function createHearts() {
 }
 </script>
 </body>
+
 </html>
